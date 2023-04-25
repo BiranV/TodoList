@@ -1,6 +1,41 @@
+<template>
+  <main>
+    <div>
+      <h2>
+        Hello,
+        <input class="input-name" type="text" placeholder="Your name" v-model="name" maxlength="12"
+          style="text-transform: capitalize" />
+      </h2>
+    </div>
+    <form @submit.prevent="addTodo">
+      <div>
+        <p>What's on your todo list?</p>
+        <input class="input-text" type="text" placeholder="e.g. make a video" v-model="input_content" maxlength="60" />
+      </div>
+      <div>
+        <p>Pick a category:</p>
+        <input type="radio" name="category" value="business" class="business" v-model="input_category" /><label
+          for="personal">Business</label>
+        <input type="radio" name="personal" value="personal" class="personal" v-model="input_category" />
+        <label for="personal">Personal</label>
+      </div>
+      <input type="submit" value="Add" />
+    </form>
+    <div>
+      <p>Todo List:</p>
+      <div v-for="todo in todos_asc">
+        <div :class="`card-${todo.category}`">
+          <input type="checkbox" v-model="todo.done" />
+          <input :class="`todo-content-${todo.done}`" type="text" v-model="todo.content" maxlength="60" />
+          <button class="delete-btn" @click="removeTodo(todo)">Delete</button>
+        </div>
+      </div>
+    </div>
+  </main>
+</template>
+
 <script setup>
 import { ref, onMounted, computed, watch } from "vue";
-
 const todos = ref([]);
 const name = ref("");
 const input_content = ref("");
@@ -43,76 +78,12 @@ watch(
   },
   { deep: true }
 );
-
 onMounted(() => {
   name.value = localStorage.getItem("name") || "";
   todos.value = JSON.parse(localStorage.getItem("todos") || []);
 });
 </script>
 
-<template>
-  <main>
-    <div>
-      <h2>
-        Hello,
-        <input
-          class="input-name"
-          type="text"
-          placeholder="Your name"
-          v-model="name"
-          maxlength="12"
-          style="text-transform: capitalize"
-        />
-      </h2>
-    </div>
-    <form @submit.prevent="addTodo">
-      <div>
-        <p>What's on your todo list?</p>
-        <input
-          class="input-text"
-          type="text"
-          placeholder="e.g. make a video"
-          v-model="input_content"
-          maxlength="60"
-        />
-      </div>
-      <div>
-        <p>Pick a category:</p>
-        <input
-          type="radio"
-          name="category"
-          value="business"
-          class="business"
-          v-model="input_category"
-        /><label for="personal">Business</label>
-        <input
-          type="radio"
-          name="personal"
-          value="personal"
-          class="personal"
-          v-model="input_category"
-        />
-        <label for="personal">Personal</label>
-      </div>
-      <input type="submit" value="Add" />
-    </form>
-    <div>
-      <p>Todo List:</p>
-      <div v-for="todo in todos_asc">
-        <div :class="`card-${todo.category}`">
-          <input type="checkbox" v-model="todo.done" />
-          <input
-            :class="`todo-content-${todo.done}`"
-            type="text"
-            v-model="todo.content"
-            maxlength="60"
-          />
-          <button class="delete-btn" @click="removeTodo(todo)">Delete</button>
-        </div>
-      </div>
-    </div>
-  </main>
-</template>
 <style>
 * {
   font-family: "montserrat", sans-serif;
@@ -125,9 +96,10 @@ body {
 
 main {
   margin: auto;
-  height: 500px;
+  height: 600px;
   width: 500px;
 }
+
 .input-name {
   width: 150px;
   border: none;
@@ -173,6 +145,7 @@ input[type="radio"].business {
   transition: 0.3s;
   margin: 0px 6px;
 }
+
 input[type="radio"].personal {
   accent-color: rgb(77, 79, 163);
   cursor: pointer;
@@ -181,6 +154,7 @@ input[type="radio"].personal {
   transition: 0.3s;
   margin: 0px 6px;
 }
+
 input[type="radio"].business:hover,
 input[type="radio"].business:checked {
   opacity: 1;
@@ -207,6 +181,7 @@ input[type="submit"]:hover {
 h2 {
   font-weight: normal;
 }
+
 .todo-line {
   width: 100%;
   display: flex;
@@ -220,6 +195,7 @@ h2 {
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
   margin: 6px 0;
 }
+
 .card-personal {
   background-color: #fff;
   border-radius: 8px;
@@ -227,6 +203,7 @@ h2 {
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
   margin: 6px 0;
 }
+
 .todo-content-false {
   box-sizing: border-box;
   width: 400px;
@@ -236,6 +213,7 @@ h2 {
   padding: 12px;
   font-size: 14px;
 }
+
 .todo-content-true {
   box-sizing: border-box;
   width: 400px;
@@ -261,6 +239,7 @@ h2 {
   opacity: 0.7;
   transition: 0.3s;
 }
+
 .delete-btn:hover {
   opacity: 1;
 }
@@ -271,5 +250,4 @@ div input[type="checkbox"] {
   opacity: 0.5;
   transition: 0.3;
 }
-
 </style>
