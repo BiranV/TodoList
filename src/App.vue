@@ -1,6 +1,6 @@
 <template>
-  <nav :style="{ backgroundImage: `url(${Image})`, backgroundSize: 'cover' }">
-    <router-link :style="{ textTransform: 'uppercase', fontSize: '1.5rem', background: 'transparent', color: '#FFFFFF' }"
+  <nav :style="{ backgroundImage: `url(${Image})`, backgroundSize: 'cover'}">
+    <router-link :style="{ textTransform: 'uppercase', fontSize: '1.5rem', background: 'transparent', color: '#000000' }"
       to="/">Vue Project - Biran Varon</router-link>
     <div :style="{ marginRight: '2rem' }">
       <router-link active-class="active" :style="{ border: '1px solid white', marginRight: '0.5rem' }"
@@ -14,7 +14,7 @@
 </template>
 
 <script setup>
-import Image from "./assets/preview1.png"
+import Image from "./assets/preview2.png"
 </script>
 
 <style>

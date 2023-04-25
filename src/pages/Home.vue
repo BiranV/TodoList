@@ -13,7 +13,7 @@
         <div class="flex">
             <router-link to="/todo-list" class="card" :style="{ textDecoration: 'none', color: '#000000' }">
                 <h2>Todo List</h2>
-           
+          
                 <div className="overlay">
                     <p>Using Local Storage</p>
                 </div>
@@ -23,7 +23,7 @@
                     color: '#000000'
                 }">
                 <h2>Memory Game</h2>
-          
+               
                 <div class="overlay">
                     <p>Good Luck!</p>
                 </div>
