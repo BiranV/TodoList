@@ -1,14 +1,7 @@
 <template>
-  <nav :style="{ backgroundImage: `url(${Image})`, backgroundSize: 'cover'}">
-    <router-link :style="{ textTransform: 'uppercase', fontSize: '1.5rem', background: 'transparent', color: '#000000' }"
-      to="/">Vue Project - Biran Varon</router-link>
-    <div :style="{ marginRight: '2rem' }">
-      <router-link active-class="active" :style="{ border: '1px solid white', marginRight: '0.5rem' }"
-        to="/todo-list">Todo
-        List</router-link>
-      <router-link active-class="active" :style="{ border: '1px solid white' }" to="/memory-game">Memory
-        Game</router-link>
-    </div>
+  <nav :style="{ backgroundImage: `url(${Image})`, backgroundSize: 'cover' }">
+    <router-link :style="{ fontSize: '1.5rem', background: 'transparent', color: '#000000' }"
+      to="/">TodoList</router-link>
   </nav>
   <router-view></router-view>
 </template>
