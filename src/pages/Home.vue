@@ -1,17 +1,11 @@
 <template>
-    <div class="todo-list">
-        <div>
-            <h1>
-                Hello,
-                <input class="input-name" type="text" placeholder="Your name" v-model="name" maxlength="12"
-                    style="text-transform: capitalize" />
-            </h1>
-        </div>
+    <div>
+        <h1> Hello, <input class="name" type="text" placeholder="Your name" v-model="name" maxlength="12"
+                style="text-transform: capitalize" /></h1>
         <form @submit.prevent="addTodo">
             <div>
                 <p>What's on your todo list?</p>
-                <input class="input-text" type="text" placeholder="e.g. make a video" v-model="input_content"
-                    maxlength="60" />
+                <input class="text" type="text" placeholder="e.g. make a video" v-model="input_content" maxlength="60" />
             </div>
             <div>
                 <p>Pick a category:</p>
@@ -22,12 +16,12 @@
             </div>
             <input type="submit" value="Add" />
         </form>
-        <div class="todos-list">
+        <div class="list">
             <p>Todo List:</p>
             <div v-for="todo in todos_asc" class="todo-line" :class="`card-${todo.category}`">
                 <input type="checkbox" v-model="todo.done" />
                 <input :class="`todo-content-${todo.done}`" type="text" v-model="todo.content" maxlength="60" />
-                <button class="delete-btn" @click="removeTodo(todo)">Delete</button>
+                <button class="delete" @click="removeTodo(todo)">Delete</button>
             </div>
 
         </div>
@@ -86,14 +80,7 @@ watch(
 </script>
   
 <style scoped>
-.todo-list {
-    max-width: 600px;
-    margin: auto;
-    justify-content: center;
-    text-align: center;
-}
-
-.input-name {
+.name {
     width: 150px;
     border: none;
     font-size: 24px;
@@ -101,13 +88,6 @@ watch(
     outline: none;
     text-transform: capitalize;
     background: none;
-}
-
-.input-name::placeholder {
-    font-weight: normal;
-    font-size: 24px;
-    opacity: 0.5;
-    color: rgb(175, 175, 175);
 }
 
 div p {
@@ -119,7 +99,7 @@ div p {
     margin-bottom: 6px;
 }
 
-.input-text {
+.text {
     box-sizing: border-box;
     width: 500px;
     outline: none;
@@ -172,11 +152,7 @@ input[type="submit"]:hover {
     opacity: 1;
 }
 
-h2 {
-    font-weight: normal;
-}
-
-.todos-list {
+.list {
     width: 500px;
     margin: 0 auto;
 }
@@ -228,7 +204,7 @@ h2 {
     text-decoration-line: line-through;
 }
 
-.delete-btn {
+button.delete {
     border: none;
     box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
     background-color: rgb(255, 83, 83);
@@ -241,11 +217,11 @@ h2 {
     transition: 0.3s;
 }
 
-.delete-btn:hover {
+button.delete:hover {
     opacity: 1;
 }
 
-div input[type="checkbox"] {
+input[type="checkbox"] {
     accent-color: gray;
     cursor: pointer;
     opacity: 0.5;

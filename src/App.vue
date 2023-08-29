@@ -1,14 +1,9 @@
 <template>
-  <nav :style="{ backgroundImage: `url(${Image})`, backgroundSize: 'cover' }">
-    <router-link :style="{ fontSize: '1.5rem', background: 'transparent', color: '#000000' }"
-      to="/">TodoList</router-link>
-  </nav>
-  <router-view></router-view>
+  <header class="header">
+    <router-link class="logo" to="/">TodoList</router-link>
+  </header>
+  <router-view class="main"></router-view>
 </template>
-
-<script setup>
-import Image from "./assets/preview2.png"
-</script>
 
 <style>
 * {
@@ -20,53 +15,40 @@ import Image from "./assets/preview2.png"
 
 body {
   background-color: #eee;
-  text-align: center;
+  overflow-y: scroll;
 }
 
-nav {
+.header {
   width: 100%;
   height: 5rem;
   display: flex;
-  justify-content: space-between;
   align-items: center;
-  padding: 0 2rem;
+  background-image: url(./assets/background.png);
+  padding: 0 7%;
   box-shadow: 0 1px 2px rgba(0, 0, 0, 0.15);
 }
 
-nav div {
-  background-color: transparent;
-}
-
-nav a {
-  text-decoration: none;
-  color: #fff;
-  padding: 0.75rem 1.5rem;
-  background-color: transparent;
-}
-
-nav a.active {
-  color: #000;
-  background-color: #fff;
-}
-
-h1 {
-  margin: 2rem 0;
-}
-
-button {
-  appearance: none;
-  border: 1px solid;
-  cursor: pointer;
+.logo {
+  font-size: 2rem;
+  color: black;
+  text-shadow: 1px 1px 2px #66756b;
   font-weight: bold;
-  padding: 0.4rem 0.6rem;
-  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.15);
-  opacity: 0.7;
-  transition: 0.3s;
-  background-color: #fff;
-  margin: 0 0.2rem;
+  text-decoration: none;
 }
 
-button:hover {
-  opacity: 1;
+.main {
+  margin: 0 auto;
+  max-width: 600px;
+  justify-content: center;
+  text-align: center;
+  padding: 1rem;
 }
+
+/* .logo {
+  font-size: 2rem;
+  color: white;
+  text-shadow: 1px 1px 2px #000;
+  font-weight: bold;
+  text-decoration: none;
+} */
 </style>
